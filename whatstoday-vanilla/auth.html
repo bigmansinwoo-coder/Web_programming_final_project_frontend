@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>What'sToday · Log in / Sign up</title>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+<!-- Minimal nav -->
+<header class="siteNav" style="justify-content:space-between">
+  <button class="ghostBtn" onclick="history.back()">← Back</button>
+  <a href="index.html" class="siteLogo" style="position:absolute;left:50%;transform:translateX(-50%)">What'sToday</a>
+  <button class="iconBtn" onclick="Theme.toggle()">☀</button>
+</header>
+
+<div style="min-height:calc(100vh - 64px);display:flex;align-items:flex-start;justify-content:center;padding:80px 40px;background:var(--surface)">
+  <div class="authGrid">
+
+    <!-- LOGIN -->
+    <div class="authCard">
+      <div style="font-size:11px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--text-light);margin-bottom:6px">Login</div>
+      <div class="authTabs">
+        <button class="authTab active" id="loginTabBtn" onclick="switchTab('login')">Log in</button>
+        <button class="authTab" id="registerTabBtn" onclick="switchTab('register')">Sign up</button>
+      </div>
+
+      <!-- Login form -->
+      <div id="loginForm">
+        <h2 style="font-size:24px;font-weight:700;letter-spacing:-0.4px;margin:0 0 6px">Welcome back</h2>
+        <p style="font-size:14px;color:var(--text-light);margin:0 0 24px">Log in to vote, comment, and post.</p>
+
+        <div class="formGroup">
+          <div class="formField">
+            <label for="loginEmail">Email</label>
+            <input type="email" id="loginEmail" placeholder="you@example.com" autocomplete="email"/>
+          </div>
+          <div class="formField">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+              <label for="loginPassword" style="margin:0">Password</label>
+              <a href="#" style="font-size:12px;color:var(--accent)">Forgot password?</a>
+            </div>
+            <div class="passwordWrap">
+              <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password"/>
+              <button class="eyeBtn" onclick="togglePwd('loginPassword', this)">👁</button>
+            </div>
+          </div>
+          <label style="display:flex;gap:8px;align-items:center;font-size:13px;color:var(--text-mid);cursor:pointer">
+            <input type="checkbox" id="rememberMe" style="width:16px;height:16px;accent-color:var(--accent)"/>
+            Remember me for 30 days
+          </label>
+          <div class="errorMsg" id="loginError">⚠ Email or password is incorrect.</div>
+          <button class="accentBtn lg" style="width:100%" onclick="handleLogin()">Log in</button>
+          <div style="text-align:center;margin-top:8px;font-size:13px;color:var(--text-mid)">
+            New to What'sToday? <a onclick="switchTab('register')" style="color:var(--accent);font-weight:600;cursor:pointer">Sign up</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Register form (same card, shown on mobile / toggled) -->
+      <div id="registerForm" style="display:none">
+        <h2 style="font-size:24px;font-weight:700;letter-spacing:-0.4px;margin:0 0 6px">Join the conversation</h2>
+        <p style="font-size:14px;color:var(--text-light);margin:0 0 24px">Takes 30 seconds. Just an email and a username.</p>
+
+        <div class="formGroup">
+          <div class="formField">
+            <label for="regEmail">Email</label>
+            <input type="email" id="regEmail" placeholder="you@example.com" autocomplete="email"
+              oninput="checkEmail(this)"/>
+          </div>
+          <div class="formField">
+            <label for="regUsername">Username</label>
+            <input type="text" id="regUsername" placeholder="alex_92" maxlength="20"
+              oninput="checkUsername(this)"/>
+            <div style="font-size:12px;color:var(--text-light)">3-20 chars · letters, numbers, underscore</div>
+          </div>
+          <div class="formField">
+            <label for="regPassword">Password</label>
+            <div class="passwordWrap">
+              <input type="password" id="regPassword" placeholder="••••••••" autocomplete="new-password"
+                oninput="checkStrength(this)"/>
+              <button class="eyeBtn" onclick="togglePwd('regPassword', this)">👁</button>
+            </div>
+            <div class="strengthBar" id="strengthBar">
+              <span id="s1"></span><span id="s2"></span><span id="s3"></span><span id="s4"></span>
+            </div>
+            <div id="strengthLabel" style="font-size:12px;color:var(--text-light)"></div>
+          </div>
+          <label style="display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--text-mid);cursor:pointer;margin-top:4px">
+            <input type="checkbox" id="termsCheck" style="width:16px;height:16px;accent-color:var(--accent);margin-top:2px;flex-shrink:0"/>
+            <span>I agree to the <a href="#" style="color:var(--accent)">Terms</a> and <a href="#" style="color:var(--accent)">Privacy Policy</a></span>
+          </label>
+          <div class="errorMsg" id="regError"></div>
+          <button class="accentBtn lg" style="width:100%" onclick="handleRegister()">Create account</button>
+          <div style="text-align:center;margin-top:8px;font-size:13px;color:var(--text-mid)">
+            Already a member? <a onclick="switchTab('login')" style="color:var(--accent);font-weight:600;cursor:pointer">Log in</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INFO PANEL (desktop only) -->
+    <div style="padding:40px 0">
+      <h2 style="font-size:32px;font-weight:800;letter-spacing:-0.8px;line-height:1.2;margin:0 0 20px">
+        Join <span style="color:var(--accent)">What'sToday</span>.<br/>Read smarter.
+      </h2>
+      <p style="font-size:16px;color:var(--text-mid);line-height:1.6;margin:0 0 32px">
+        Every day, one issue per category — Economy, Politics, Entertainment. Free to read. Discuss, vote, and post when you're ready.
+      </p>
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;gap:14px;align-items:flex-start">
+          <span style="font-size:22px">📰</span>
+          <div>
+            <div style="font-size:15px;font-weight:600;margin-bottom:4px">AI-curated daily</div>
+            <div style="font-size:14px;color:var(--text-mid)">Three issues selected every morning. No doomscrolling.</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start">
+          <span style="font-size:22px">💬</span>
+          <div>
+            <div style="font-size:15px;font-weight:600;margin-bottom:4px">Real discussion</div>
+            <div style="font-size:14px;color:var(--text-mid)">Upvotes surface the best takes. Spam sinks.</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start">
+          <span style="font-size:22px">📚</span>
+          <div>
+            <div style="font-size:15px;font-weight:600;margin-bottom:4px">Archive forever</div>
+            <div style="font-size:14px;color:var(--text-mid)">Every past issue stays searchable. Context doesn't disappear.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="js/shared.js"></script>
+<script>
+  Theme.init();
+
+  // Check URL params
+  const params = new URLSearchParams(window.location.search);
+  const mode    = params.get('mode');
+  const redirect = params.get('redirect') || 'index.html';
+
+  if (mode === 'register') switchTab('register');
+
+  function switchTab(tab) {
+    const isLogin = tab === 'login';
+    document.getElementById('loginForm').style.display    = isLogin ? 'block' : 'none';
+    document.getElementById('registerForm').style.display = isLogin ? 'none'  : 'block';
+    document.getElementById('loginTabBtn').classList.toggle('active',    isLogin);
+    document.getElementById('registerTabBtn').classList.toggle('active', !isLogin);
+  }
+
+  function togglePwd(id, btn) {
+    const input = document.getElementById(id);
+    if (input.type === 'password') { input.type = 'text'; btn.textContent = '🙈'; }
+    else { input.type = 'password'; btn.textContent = '👁'; }
+  }
+
+  // Email validation (simple)
+  function checkEmail(input) {
+    const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value);
+    input.classList.toggle('valid', valid && input.value.length > 0);
+    input.classList.toggle('error', !valid && input.value.length > 3);
+  }
+
+  // Username validation
+  function checkUsername(input) {
+    const valid = /^[a-zA-Z0-9_]{3,20}$/.test(input.value);
+    input.classList.toggle('valid', valid);
+    input.classList.toggle('error', !valid && input.value.length > 2);
+  }
+
+  // Password strength
+  function checkStrength(input) {
+    const v = input.value;
+    const segments = [document.getElementById('s1'),document.getElementById('s2'),document.getElementById('s3'),document.getElementById('s4')];
+    const label = document.getElementById('strengthLabel');
+    segments.forEach(s => s.classList.remove('filled'));
+    if (v.length === 0) { label.textContent = ''; return; }
+    let score = 0;
+    if (v.length >= 8)       score++;
+    if (/[A-Z]/.test(v))     score++;
+    if (/[0-9]/.test(v))     score++;
+    if (/[^A-Za-z0-9]/.test(v)) score++;
+    for (let i = 0; i < score; i++) segments[i].classList.add('filled');
+    const labels = ['', 'Weak', 'OK', 'Good', 'Strong'];
+    const colors = ['', 'var(--danger)', 'var(--warn)', 'var(--accent)', 'var(--success)'];
+    label.textContent = labels[score] || '';
+    label.style.color = colors[score] || '';
+  }
+
+  // Login handler (mock — replace with real API call)
+  function handleLogin() {
+    const email    = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value;
+    const errEl    = document.getElementById('loginError');
+
+    if (!email || !password) { errEl.classList.add('show'); errEl.textContent = '⚠ Please fill in all fields.'; return; }
+
+    // Mock: accept any non-empty email+password for demo
+    // In real app: fetch POST /api/auth/login
+    const username = email.split('@')[0];
+    Auth.setUser({ username, email, role: username === 'admin' ? 'admin' : 'user' });
+    errEl.classList.remove('show');
+    showToast(`Welcome back, ${username}!`);
+    setTimeout(() => window.location.href = redirect, 600);
+  }
+
+  // Register handler (mock)
+  function handleRegister() {
+    const email    = document.getElementById('regEmail').value.trim();
+    const username = document.getElementById('regUsername').value.trim();
+    const password = document.getElementById('regPassword').value;
+    const terms    = document.getElementById('termsCheck').checked;
+    const errEl    = document.getElementById('regError');
+
+    if (!email || !username || !password) {
+      errEl.textContent = '⚠ Please fill in all fields.'; errEl.classList.add('show'); return;
+    }
+    if (!/^[a-zA-Z0-9_]{3,20}$/.test(username)) {
+      errEl.textContent = '⚠ Username must be 3-20 chars, letters/numbers/underscore only.'; errEl.classList.add('show'); return;
+    }
+    if (password.length < 8) {
+      errEl.textContent = '⚠ Password must be at least 8 characters.'; errEl.classList.add('show'); return;
+    }
+    if (!terms) {
+      errEl.textContent = '⚠ Please agree to the Terms and Privacy Policy.'; errEl.classList.add('show'); return;
+    }
+
+    // In real app: fetch POST /api/auth/register
+    Auth.setUser({ username, email, role: 'user' });
+    errEl.classList.remove('show');
+    showToast(`Account created! Welcome, ${username}!`);
+    setTimeout(() => window.location.href = redirect, 600);
+  }
+</script>
+</body>
+</html>

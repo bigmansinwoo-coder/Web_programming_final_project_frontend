@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>What'sToday · Entertainment Board</title>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<div id="navContainer"></div>
+<main class="site">
+  <div style="border-bottom:1px solid var(--border-light)">
+    <div class="container" style="padding:14px 40px;font-size:13px;color:var(--text-light)">
+      <a href="index.html">Today</a> / <span style="color:var(--text);font-weight:600"> Entertainment</span>
+    </div>
+  </div>
+  <section style="padding:60px 0 40px;background:var(--surface);border-bottom:1px solid var(--border-light)">
+    <div class="container" style="display:grid;grid-template-columns:1.4fr 1fr;gap:64px;align-items:center">
+      <div>
+        <div style="display:flex;gap:8px;margin-bottom:14px;align-items:center">
+          <span class="tag" style="background:var(--text);color:var(--bg)">Entertainment</span>
+          <span class="tag ai">✦ AI-curated</span>
+          <span style="font-size:13px;color:var(--text-light)">May 16, 2026</span>
+        </div>
+        <h1 style="font-size:38px;font-weight:700;letter-spacing:-1px;line-height:1.15;margin:0 0 18px">
+          K-pop agency announces fully AI-generated debut group
+        </h1>
+        <p style="font-size:17px;color:var(--text-mid);line-height:1.6;max-width:600px;margin:0 0 24px">
+          No human members — just music, visuals, and personas synthesized by AI. Fans are split: harmless fun or end of authentic artistry?
+        </p>
+        <div style="display:flex;gap:12px;align-items:center">
+          <button class="outlineBtn">↗ Read full article</button>
+          <span style="font-size:13px;color:var(--text-light)">· 583 posts · 4,221 comments</span>
+        </div>
+      </div>
+      <div class="imgCard mint" style="min-height:220px">Image placeholder</div>
+    </div>
+  </section>
+  <div class="container wide" style="display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:48px;padding:40px 40px 60px">
+    <div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:24px">
+        <div class="sortToggle">
+          <button class="active">🔥 Top</button>
+          <button>🕐 Latest</button>
+        </div>
+        <button class="accentBtn" onclick="if(!Auth.isLoggedIn()){window.location.href='auth.html'}else{window.location.href='write.html?cat=entertainment'}">+ Write post</button>
+      </div>
+      <div id="postsList"></div>
+    </div>
+    <aside style="display:flex;flex-direction:column;gap:18px">
+      <div class="cardSoft" style="padding:18px">
+        <div class="label" style="margin-bottom:10px">Other categories</div>
+        <div onclick="window.location='board.html'" style="padding:10px 0;border-top:1px solid var(--border-light);cursor:pointer">
+          <div style="font-size:12px;color:var(--text-light);margin-bottom:2px">Economy</div>
+          <div style="font-size:14px;font-weight:600">Korean won hits 6-month low</div>
+        </div>
+        <div onclick="window.location='board-politics.html'" style="padding:10px 0;border-top:1px solid var(--border-light);cursor:pointer">
+          <div style="font-size:12px;color:var(--text-light);margin-bottom:2px">Politics</div>
+          <div style="font-size:14px;font-weight:600">4-day work week pilot debated</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+<div id="footerContainer"></div>
+<script src="js/shared.js"></script>
+<script>
+  renderNav({ activePage: 'board-ent', container: document.getElementById('navContainer') });
+  renderFooter(document.getElementById('footerContainer'));
+  const POSTS = [
+    { id:1, author:'culture_critic', time:'2h ago', score:312, comments:98, views:4210,
+      title:"AI idol groups are a symptom, not the disease — the fandom economy was already broken",
+      snippet:"We've spent years commodifying parasocial relationships. An AI group is just the logical endpoint of that..." },
+    { id:2, author:'stan_account_99', time:'4h ago', score:201, comments:74, views:2830,
+      title:"As a fan: I actually don't mind. Let me explain.",
+      snippet:"I've been a fan of virtual groups since Hatsune Miku. The authenticity debate is more complex than critics admit..." },
+  ];
+  document.getElementById('postsList').innerHTML = POSTS.map(p => postRowHTML({ post:p })).join('');
+</script>
+</body>
+</html>
