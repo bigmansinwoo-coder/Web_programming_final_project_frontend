@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What'sToday · Post</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- Nav -->
+<div id="navContainer"></div>
+
+<main class="site">
+  <div class="container">
+
+    <!-- Back -->
+    <a id="backLink" href="index.html" class="backLink">← Back to Issue</a>
+
+    <!-- Post Detail -->
+    <article id="postDetail" class="postDetail">
+      <div class="loadingState">Loading post…</div>
+    </article>
+
+    <!-- Post Actions (edit / delete — visible only to author) -->
+    <div id="postActions" class="postActions" style="display:none">
+      <a id="editLink" href="#" class="outlineBtn">Edit</a>
+      <button id="deleteBtn" class="dangerBtn">Delete</button>
+    </div>
+
+    <!-- Comments -->
+    <section class="commentsSection">
+      <div class="sectionHeader">
+        <span class="sectionLabel">COMMENTS</span>
+        <span id="commentCount" class="sectionCount"></span>
+      </div>
+
+      <!-- Comment Form -->
+      <form id="commentForm" class="commentForm" style="display:none">
+        <textarea id="commentText" rows="3" placeholder="Share your thoughts…"></textarea>
+        <button type="submit" class="accentBtn">Post Comment</button>
+      </form>
+      <p id="commentLoginMsg" style="display:none;font-size:14px;color:var(--text-light)">
+        <a href="auth.html" style="color:var(--accent)">Log in</a> to leave a comment.
+      </p>
+
+      <div id="commentList">
+        <div class="loadingState">Loading comments…</div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- Footer -->
+<div id="footerContainer"></div>
+
+<script src="js/api.js"></script>
+<script src="js/shared.js"></script>
+<script src="js/post.js"></script>
+</body>
+</html>

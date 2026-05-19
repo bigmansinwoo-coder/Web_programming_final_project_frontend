@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What'sToday · Write</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- Nav -->
+<div id="navContainer"></div>
+
+<main class="site">
+  <div class="container writeGrid">
+
+    <a id="backLink" href="index.html" class="backLink">← Cancel</a>
+
+    <h2 id="writeHeading" class="writeHeading">Write a Post</h2>
+
+    <form id="writeForm" class="writeForm">
+      <div class="fieldGroup">
+        <label for="postTitle">Title</label>
+        <input id="postTitle" type="text" placeholder="Give your post a clear title" required />
+      </div>
+      <div class="fieldGroup">
+        <label for="postBody">Body</label>
+        <textarea id="postBody" rows="12" placeholder="Share your perspective on today's issue…" required></textarea>
+      </div>
+      <div class="formActions">
+        <button type="submit" id="submitBtn" class="accentBtn">Publish</button>
+        <a id="cancelLink" href="index.html" class="ghostBtn">Cancel</a>
+      </div>
+      <p id="writeError" class="errorMsg" style="display:none"></p>
+    </form>
+
+  </div>
+</main>
+
+<!-- Footer -->
+<div id="footerContainer"></div>
+
+<script src="js/api.js"></script>
+<script src="js/shared.js"></script>
+<script src="js/write.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What'sToday · Sign In</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- Nav -->
+<div id="navContainer"></div>
+
+<main class="site">
+  <div class="container authGrid">
+
+    <!-- Tab Toggle -->
+    <div class="tabToggle">
+      <button id="tabLogin"    class="tabBtn active" onclick="switchTab('login')">Log In</button>
+      <button id="tabRegister" class="tabBtn"        onclick="switchTab('register')">Sign Up</button>
+    </div>
+
+    <!-- Login Form -->
+    <form id="loginForm" class="authForm">
+      <div class="fieldGroup">
+        <label for="loginEmail">Email</label>
+        <input id="loginEmail" type="email" placeholder="you@example.com" required />
+      </div>
+      <div class="fieldGroup">
+        <label for="loginPassword">Password</label>
+        <input id="loginPassword" type="password" placeholder="••••••••" required />
+      </div>
+      <p id="loginError" class="errorMsg" style="display:none"></p>
+      <button type="submit" id="loginBtn" class="accentBtn" style="width:100%">Log In</button>
+    </form>
+
+    <!-- Register Form -->
+    <form id="registerForm" class="authForm" style="display:none">
+      <div class="fieldGroup">
+        <label for="regUsername">Username</label>
+        <input id="regUsername" type="text" placeholder="Choose a username" required />
+      </div>
+      <div class="fieldGroup">
+        <label for="regEmail">Email</label>
+        <input id="regEmail" type="email" placeholder="you@example.com" required />
+      </div>
+      <div class="fieldGroup">
+        <label for="regPassword">Password</label>
+        <input id="regPassword" type="password" placeholder="At least 8 characters" required />
+      </div>
+      <p id="registerError" class="errorMsg" style="display:none"></p>
+      <button type="submit" id="registerBtn" class="accentBtn" style="width:100%">Create Account</button>
+    </form>
+
+  </div>
+</main>
+
+<!-- Footer -->
+<div id="footerContainer"></div>
+
+<script src="js/api.js"></script>
+<script src="js/shared.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

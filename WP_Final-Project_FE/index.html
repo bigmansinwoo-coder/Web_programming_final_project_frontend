@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What'sToday · Home</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- Nav -->
+<div id="navContainer"></div>
+
+<main class="site">
+
+  <!-- Hero -->
+  <section class="pageHero">
+    <h1><span class="hash">#</span>What's Today!</h1>
+    <p class="subhead" id="todayLabel">Three issues. Three conversations. Updated every morning.</p>
+  </section>
+
+  <div class="container">
+
+    <!-- Today's Issues -->
+    <section class="todaySection">
+      <div class="sectionHeader">
+        <span class="sectionLabel">TODAY</span>
+      </div>
+      <div id="todayGrid">
+        <div class="loadingState">Loading today's issue…</div>
+      </div>
+    </section>
+
+    <!-- Archive -->
+    <section class="archiveSection">
+      <div class="sectionHeader">
+        <span class="sectionLabel">ARCHIVE</span>
+      </div>
+      <div id="archiveList">
+        <div class="loadingState">Loading past issues…</div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- Footer -->
+<div id="footerContainer"></div>
+
+<script src="js/api.js"></script>
+<script src="js/shared.js"></script>
+<script src="js/index.js"></script>
+</body>
+</html>

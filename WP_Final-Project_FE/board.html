@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What'sToday · Issue</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<!-- Nav -->
+<div id="navContainer"></div>
+
+<main class="site">
+  <div class="container">
+
+    <!-- Back -->
+    <a href="index.html" class="backLink">← Back to Home</a>
+
+    <!-- Issue Detail -->
+    <section id="issueDetail" class="issueDetail">
+      <div class="loadingState">Loading issue…</div>
+    </section>
+
+    <!-- Write a Post -->
+    <div class="writeBar">
+      <a id="writeLink" href="write.html" class="accentBtn">✏ Write a Post</a>
+    </div>
+
+    <!-- Post List -->
+    <section class="postsSection">
+      <div class="sectionHeader">
+        <span class="sectionLabel">POSTS</span>
+        <span id="postCount" class="sectionCount"></span>
+      </div>
+      <div id="postList">
+        <div class="loadingState">Loading posts…</div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- Footer -->
+<div id="footerContainer"></div>
+
+<script src="js/api.js"></script>
+<script src="js/shared.js"></script>
+<script src="js/board.js"></script>
+</body>
+</html>
