@@ -211,4 +211,4 @@ VITE_API_BASE_URL=http://localhost:3000/api
 
 ## 팀
 
-**What's Today Team** — Northumbria University Web Programming Final Project (2026)
+**What's Today Team** — Seoultech University Web Programming Final Project (2026)
