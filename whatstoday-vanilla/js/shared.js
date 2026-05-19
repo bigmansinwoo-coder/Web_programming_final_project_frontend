@@ -105,7 +105,7 @@ function handleLogout() {
 }
 
 function handleSearch() {
-  const q = prompt('Search What'sToday:');
+  const q = prompt("Search What's Today:");
   if (q && q.trim()) {
     showToast(`Searching for "${q}" — (search page coming soon)`);
   }
