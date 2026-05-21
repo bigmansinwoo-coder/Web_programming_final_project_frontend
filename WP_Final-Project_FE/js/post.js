@@ -54,22 +54,23 @@ async function loadPost(id) {
     if (backLink && issueId) backLink.href = `board.html?id=${issueId}`;
 
     const score = post.vote_score ?? post.score ?? 0;
+    const userVote = post.userVote ?? null;  // ← 추가
     // Render post body
     detailEl.innerHTML = `
-      <div class="postDetailMeta">
-        <div class="avatar sm">${escapeHTML((post.author_username || '?')[0].toUpperCase())}</div>
-        <strong>${escapeHTML(post.author_username || 'Unknown')}</strong>
-        <span>·</span>
-        <span>${formatDate(post.created_at)}</span>
-      </div>
-      <h1 class="postDetailTitle">${escapeHTML(post.title)}</h1>
-      <div class="postDetailBody">${escapeHTML(post.body)}</div>
-      <div class="postDetailVote">
-        <button class="voteBtn up" onclick="handleVote(event, this, 'up', ${post.id})">▲</button>
-        <span class="voteScore">${score}</span>
-        <button class="voteBtn down" onclick="handleVote(event, this, 'down', ${post.id})">▼</button>
-      </div>
-    `;
+    <div class="postDetailMeta">
+      <div class="avatar sm">${escapeHTML((post.author_username || '?')[0].toUpperCase())}</div>
+      <strong>${escapeHTML(post.author_username || 'Unknown')}</strong>
+      <span>·</span>
+      <span>${formatDate(post.created_at)}</span>
+    </div>
+    <h1 class="postDetailTitle">${escapeHTML(post.title)}</h1>
+    <div class="postDetailBody">${escapeHTML(post.body)}</div>
+    <div class="postDetailVote">
+      <button class="voteBtn up ${userVote === 'up' ? 'active' : ''}" onclick="handleVote(event, this, 'up', ${post.id})">▲</button>
+      <span class="voteScore">${score}</span>
+      <button class="voteBtn down ${userVote === 'down' ? 'active' : ''}" onclick="handleVote(event, this, 'down', ${post.id})">▼</button>
+    </div>
+  `;
 
     // Show edit/delete only to the author
     const isOwn = user && (user.id === post.author_id || user.username === post.author_username);
