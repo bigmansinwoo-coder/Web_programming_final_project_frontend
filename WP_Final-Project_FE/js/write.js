@@ -9,11 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
   renderNav({ activePage: '', container: document.getElementById('navContainer') });
   renderFooter(document.getElementById('footerContainer'));
 
-  // Require login — TODO: 백엔드 연결 후 주석 해제할 것!
-  // if (!Auth.isLoggedIn()) {
-  //   window.location.href = 'auth.html?redirect=' + encodeURIComponent(window.location.href);
-  //   return;
-  // }
+  //Require login — TODO: 백엔드 연결 후 주석 해제할 것!
+   if (!Auth.isLoggedIn()) {
+     window.location.href = 'auth.html?redirect=' + encodeURIComponent(window.location.href);
+     return;
+   }
 
   const params = new URLSearchParams(window.location.search);
   issueId    = params.get('issueId');
