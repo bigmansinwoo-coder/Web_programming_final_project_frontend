@@ -42,7 +42,8 @@ async function handleLogin(e) {
   btn.disabled = true;
   try {
     const data = await API.login(email, password);
-    Auth.setUser(data.user || data);
+    localStorage.setItem('wt_token', data.token);
+    Auth.setUser(data.user);
     showToast('Welcome back!');
 
     const redirect = new URLSearchParams(window.location.search).get('redirect');

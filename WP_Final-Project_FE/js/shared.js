@@ -103,7 +103,7 @@ function toggleMobileNav() {
 }
 
 async function handleLogout() {
-  try { await API.logout(); } catch {}
+  localStorage.removeItem('wt_token');
   Auth.logout();
   showToast('Logged out');
   setTimeout(() => window.location.href = 'index.html', 800);

@@ -5,9 +5,13 @@
 const BASE = '/api';
 
 async function apiFetch(path, options = {}) {
+  const token = localStorage.getItem('wt_token');
+
   const res = await fetch(BASE + path, {
-    headers: { 'Content-Type': 'application/json' },
-    credentials: 'include',
+    headers: { 
+      'Content-Type': 'application/json' ,
+      ...(token && { 'Authorization': `Bearer ${token}` }),
+    },
     ...options,
     body: options.body !== undefined ? JSON.stringify(options.body) : undefined,
   });
@@ -26,9 +30,6 @@ const API = {
 
   login    : (email, password) =>
     apiFetch('/auth/login', { method: 'POST', body: { email, password } }),
-
-  logout   : () =>
-    apiFetch('/auth/logout', { method: 'POST' }),
 
   me       : () =>
     apiFetch('/auth/me'),
